@@ -29,7 +29,7 @@ class GiveRole(commands.Cog):
         except Exception as e:
             logging.exception(repr(e))
         finally:
-            logging.info(member + ' add role ' + role_add)
+            logging.info(f'{member}' + ' add role ' + role_add)
 
 def setup(bot: commands.Bot):
     bot.add_cog(GiveRole(bot))
