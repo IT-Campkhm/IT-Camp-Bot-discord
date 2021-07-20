@@ -25,7 +25,7 @@ class GiveRole(commands.Cog):
             
             await member.add_roles(role) 
         except Exception as e:
-            logging.exception(e)
+            logging.exception(repr(e))
 
     @commands.Cog.listener()
     async def on_raw_reaction_remove(self, payload: discord.RawReactionActionEvent):
@@ -40,7 +40,7 @@ class GiveRole(commands.Cog):
 
             await member.remove_roles(role)
         except Exception as e:
-            logging.exception(e)
+            logging.exception(repr(e))
 
 
     @commands.command(name = 'send')
