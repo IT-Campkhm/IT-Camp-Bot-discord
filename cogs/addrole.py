@@ -23,7 +23,7 @@ class GiveRole(commands.Cog):
 
         try:
             emoji = str(payload.emoji)
-            role = utils.get(message.guild.roles, id = config.ROLES[emoji])
+            role: discord.Role = utils.get(message.guild.roles, id = config.ROLES[emoji])
 
             await member.add_roles(role) 
         except Exception as e:
@@ -45,7 +45,7 @@ class GiveRole(commands.Cog):
 
         try:
             emoji = str(payload.emoji)
-            role = utils.get(message.guild.roles, id = config.ROLES[emoji])
+            role: discord.Role = utils.get(message.guild.roles, id = config.ROLES[emoji])
 
             await member.remove_roles(role)
         except Exception as e:
