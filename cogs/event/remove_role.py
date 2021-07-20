@@ -31,7 +31,7 @@ class RemoveRole(commands.Cog):
         except Exception as e:
             logging.exception(repr(e))
         finally:
-            logging.info(f'{member}' + ' remove role ' + role_remove)
+            logging.info(f'{member}' + ' remove role ' + f'{role_remove.name}')
 
 def setup(bot: commands.Bot):
     bot.add_cog(RemoveRole(bot))
