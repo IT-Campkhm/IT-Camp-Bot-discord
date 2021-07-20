@@ -19,20 +19,22 @@ class GiveRole(commands.Cog):
         message = await channel.fetch_message(int(config.message))
         member: discord.Member = utils.get(message.guild.members, id = payload.user_id)
 
-        print('Channel ', channel)
-        print('Message', message)
-        print('Member', member)
+        
 
         try:
             emoji = str(payload.emoji)
             role = utils.get(message.guild.roles, id = config.ROLES[emoji])
-            
-            print('Emoji ', emoji)
-            print('Role ', role)
 
             await member.add_roles(role) 
         except Exception as e:
             logging.exception(repr(e))
+
+        finally:
+            print('Channel ', channel)
+            print('Message', message)
+            print('Member', member)
+            print('Emoji ', emoji)
+            print('Role ', role)
 
     @commands.Cog.listener()
     async def on_raw_reaction_remove(self, payload: discord.RawReactionActionEvent):
@@ -41,21 +43,19 @@ class GiveRole(commands.Cog):
         message = await channel.fetch_message(int(config.message))
         member: discord.Member = utils.get(message.guild.members, id = payload.user_id)
 
-        print('Channel ', channel)
-        print('Message', message)
-        print('Member', member)
-
         try:
             emoji = str(payload.emoji)
             role = utils.get(message.guild.roles, id = config.ROLES[emoji])
 
-            print('Emoji ', emoji)
-            print('Role ', role)
-
             await member.remove_roles(role)
         except Exception as e:
             logging.exception(repr(e))
-
+        finally:
+            print('Channel ', channel)
+            print('Message', message)
+            print('Member', member)
+            print('Emoji ', emoji)
+            print('Role ', role)
 
     @commands.command(name = 'send')
     async def _send(self, ctx: Context):
