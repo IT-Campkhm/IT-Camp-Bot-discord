@@ -1,4 +1,5 @@
 import logging
+from re import LOCALE
 
 import config
 import discord
@@ -19,13 +20,11 @@ class GiveRole(commands.Cog):
         message = await channel.fetch_message(int(config.message))
         member: discord.Member = utils.get(message.guild.members, id = payload.user_id)
 
-        
-
         try:
             emoji = str(payload.emoji)
-            role: discord.Role = utils.get(message.guild.roles, id = config.ROLES[emoji])
+            role_add: discord.Role = utils.get(message.guild.roles, id = config.ROLES[emoji])
 
-            await member.add_roles(role) 
+            await member.add_roles(role_add) 
         except Exception as e:
             logging.exception(repr(e))
 
@@ -34,7 +33,7 @@ class GiveRole(commands.Cog):
             print('Message', message)
             print('Member', member)
             print('Emoji ', emoji)
-            print('Role ', role)
+            print('Role ', role_add)
 
     @commands.Cog.listener()
     async def on_raw_reaction_remove(self, payload: discord.RawReactionActionEvent):
@@ -45,9 +44,9 @@ class GiveRole(commands.Cog):
 
         try:
             emoji = str(payload.emoji)
-            role: discord.Role = utils.get(message.guild.roles, id = config.ROLES[emoji])
+            role_remove: discord.Role = utils.get(message.guild.roles, id = config.ROLES[emoji])
 
-            await member.remove_roles(role)
+            await member.remove_roles(role_remove)
         except Exception as e:
             logging.exception(repr(e))
         finally:
@@ -55,7 +54,7 @@ class GiveRole(commands.Cog):
             print('Message', message)
             print('Member', member)
             print('Emoji ', emoji)
-            print('Role ', role)
+            print('Role ', role_remove)
 
     @commands.command(name = 'send')
     async def _send(self, ctx: Context):
