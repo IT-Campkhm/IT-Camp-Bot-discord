@@ -27,11 +27,11 @@ class RemoveRole(commands.Cog):
             emoji = str(payload.emoji)
             role_remove: discord.Role = utils.get(message.guild.roles, id = config.ROLES_REMOVE[emoji])
 
-            logging.info(role_remove)
-
             await member.remove_roles(role_remove)
         except Exception as e:
             logging.exception(repr(e))
+        finally:
+            logging.info(member + ' remove role ' + role_remove)
 
 def setup(bot: commands.Bot):
     bot.add_cog(RemoveRole(bot))

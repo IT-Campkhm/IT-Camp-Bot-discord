@@ -28,6 +28,8 @@ class GiveRole(commands.Cog):
             await member.add_roles(role_add) 
         except Exception as e:
             logging.exception(repr(e))
+        finally:
+            logging.info(member + ' add role ' + role_add)
 
 def setup(bot: commands.Bot):
     bot.add_cog(GiveRole(bot))
