@@ -25,7 +25,7 @@ class RemoveRole(commands.Cog):
 
         try:
             emoji = str(payload.emoji)
-            role_remove: discord.Role = utils.get(message.guild.roles, id = config.ROLES[emoji])
+            role_remove: discord.Role = utils.get(message.guild.roles, id = config.ROLES_REMOVE[emoji])
 
             logging.info(role_remove)
 
