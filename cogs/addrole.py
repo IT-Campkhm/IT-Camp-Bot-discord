@@ -1,6 +1,8 @@
 import logging
 from re import LOCALE
 
+from discord import role
+
 import config
 import discord
 from discord import utils
@@ -24,6 +26,8 @@ class GiveRole(commands.Cog):
             emoji = str(payload.emoji)
             role_add: discord.Role = utils.get(message.guild.roles, id = config.ROLES[emoji])
 
+            logging.info(role_add)
+
             await member.add_roles(role_add) 
         except Exception as e:
             logging.exception(repr(e))
@@ -45,6 +49,8 @@ class GiveRole(commands.Cog):
         try:
             emoji = str(payload.emoji)
             role_remove: discord.Role = utils.get(message.guild.roles, id = config.ROLES[emoji])
+
+            logging.info(role_remove)
 
             await member.remove_roles(role_remove)
         except Exception as e:
