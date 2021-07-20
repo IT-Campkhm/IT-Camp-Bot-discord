@@ -60,7 +60,7 @@ class GiveRole(commands.Cog):
             print('Message', message)
             print('Member', member)
             print('Emoji ', emoji)
-            print('Role ', role_remove)
+            #print('Role ', role_remove)
 
     @commands.command(name = 'send')
     async def _send(self, ctx: Context):
