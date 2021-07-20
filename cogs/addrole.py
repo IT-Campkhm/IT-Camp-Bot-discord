@@ -1,5 +1,7 @@
 import logging
 
+import pprint
+
 import config
 import discord
 from discord import utils
@@ -34,7 +36,7 @@ class GiveRole(commands.Cog):
             print('Message', message)
             print('Member', member)
             print('Emoji ', emoji)
-            print('Role ', role_add)
+            print('Role \n', role_add)
 
     @commands.Cog.listener()
     async def on_raw_reaction_remove(self, payload: discord.RawReactionActionEvent):
@@ -49,7 +51,7 @@ class GiveRole(commands.Cog):
         print(message)
         print(member)
         print(emoji)
-        print(role_remove)
+        print(role_remove, '\n')
 
         '''
         channel: discord.TextChannel = self.bot.get_channel(int(config.channel))
