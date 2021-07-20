@@ -40,7 +40,7 @@ class GiveRole(commands.Cog):
 
             await member.remove_roles(role)
         except Exception as e:
-            logging.exception(E)
+            logging.exception(e)
 
 
     @commands.command(name = 'send')
