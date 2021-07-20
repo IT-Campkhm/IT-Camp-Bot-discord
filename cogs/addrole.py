@@ -1,7 +1,4 @@
 import logging
-from re import LOCALE
-
-from discord import role
 
 import config
 import discord
@@ -45,6 +42,19 @@ class GiveRole(commands.Cog):
         channel: discord.TextChannel = self.bot.get_channel(int(config.channel))
         message = await channel.fetch_message(int(config.message))
         member: discord.Member = utils.get(message.guild.members, id = payload.user_id)
+        emoji = str(payload.emoji)
+        role_remove: discord.Role = utils.get(message.guild.roles, id = str(config.ROLES[emoji]))
+
+        print(channel)
+        print(message)
+        print(member)
+        print(emoji)
+        print(role_remove)
+
+        '''
+        channel: discord.TextChannel = self.bot.get_channel(int(config.channel))
+        message = await channel.fetch_message(int(config.message))
+        member: discord.Member = utils.get(message.guild.members, id = payload.user_id)
 
         try:
             emoji = str(payload.emoji)
@@ -61,7 +71,7 @@ class GiveRole(commands.Cog):
             print('Member', member)
             print('Emoji ', emoji)
             #print('Role ', role_remove)
-
+        '''
     @commands.command(name = 'send')
     async def _send(self, ctx: Context):
 
