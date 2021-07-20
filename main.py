@@ -12,7 +12,10 @@ intents = discord.Intents.all()
 bot = Bot(command_prefix = '_', help_command = None, intents = intents)
 
 
-bot.load_extension('cogs.addrole')
+bot.load_extension('cogs.commands.send_role_embed')
+bot.load_extension('cogs.event.add_role')
+bot.load_extension('cogs.event.remove_role')
+
 
 token = os.environ.get('TOKEN')
 bot.run(token)
