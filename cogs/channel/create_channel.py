@@ -29,10 +29,12 @@ class PrivateChannel(commands.Cog):
                 category_main: discord.CategoryChannel = get(member.guild.categories, id = category)
                 channel: discord.VoiceChannel = await member.guild.create_voice_channel(name = f'Приватный ({member.display_name})', category = category_main)
                 
-                await channel.set_permissions(member, connect = True, mute_members = True, move_members = True, manage_channels = True, manage_roles = True)
+                await channel.set_permissions(member, connect = , mute_members = True, move_members = True, manage_channels = True, manage_roles = True)
                 await member.move_to(channel)
 
                 self.all_channel.append(channel.id)
+
+                logging.info(self.all_channel)
 
             except Exception as e:
                 logging.exception(e)
@@ -42,6 +44,7 @@ class PrivateChannel(commands.Cog):
             try:
                 del_channel: discord.VoiceChannel = get(member.guild.voice_channels, id = before.channel.id)
                 await del_channel.delete()
+                logging.info(self.all_channel)
             except Exception as e:
                 logging.exception(e)
             
