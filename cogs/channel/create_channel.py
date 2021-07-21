@@ -22,7 +22,7 @@ class PrivateChannel(commands.Cog):
         
         category = int(config.category_id)
 
-        if member.voice.channel is not None and member.voice.channel.id == int(config.voice_id):
+        if after.channel is not None and member.voice.channel.id == int(config.voice_id) and member.voice.channel is not None:
             logging.info('Member connect in channel {0}'.format(after.channel.name))
             
             try:
