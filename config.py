@@ -68,3 +68,6 @@ r = [
 
 message = os.environ.get('MESSAGE')
 channel = os.environ.get('CHANNEL')
+
+voice_id = os.environ.get('VOICE_ID')
+category_id = os.environ.get('CATEGORY_ID')
