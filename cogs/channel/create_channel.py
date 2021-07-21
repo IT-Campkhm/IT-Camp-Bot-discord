@@ -17,8 +17,9 @@ class PrivateChannel(commands.Cog):
         
         print(f'\n{member}\n\n{before}\n\n{after}\n')
 
-        if  member.voice.channel.id == int(config.voice_id):
+        if member.voice.channel.id == int(config.voice_id) and after.channel is not None:
             logging.info('Member connect in channel {0}'.format(after.channel.name))
+        
         '''
         try:
             if after.channel is not None and member.voice.channel.id == int(config.voice_id)
