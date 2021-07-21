@@ -19,7 +19,7 @@ class PrivateChannel(commands.Cog):
         print(f'Before: {before}\n')
         print(f'After: {after}\n')
 
-        '''
+        
         category = int(config.category_id)
 
         if member.voice.channel is not None and member.voice.channel.id == int(config.voice_id):
@@ -32,13 +32,18 @@ class PrivateChannel(commands.Cog):
                 await channel.set_permissions(member, connect = True, mute_members = True, move_members = True, manage_channels = True, manage_roles = True)
                 await member.move_to(channel)
 
-                self.all_channel.append(int(channel.id))
+                self.all_channel.append(channel.id)
 
             except Exception as e:
                 logging.exception(e)
         
-        if after.channel.id in self.all_channel and len(get(member.guild.voice_channel, id = after.channel.id).members) == 0:
-            pass
-            '''
+        if after.channel is None and before.channel.id in self.all_channel and len(before.channel.members) == 0:
+
+            try:
+                del_channel: discord.VoiceChannel = get(member.guild.voice_channels, id = before.channel.id)
+                await del_channel.delete()
+            except Exception as e:
+                logging.exception(e)
+            
 def setup(bot: commands.Bot):
     bot.add_cog(PrivateChannel(bot))
