@@ -37,7 +37,7 @@ class PrivateChannel(commands.Cog):
             except Exception as e:
                 logging.exception(e)
         
-        if after.channel is None and before.channel.id in self.all_channel and len(before.channel.members) == 0:
+        elif after.channel is None and before.channel.id in self.all_channel and len(before.channel.members) == 0:
 
             try:
                 del_channel: discord.VoiceChannel = get(member.guild.voice_channels, id = before.channel.id)
