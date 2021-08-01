@@ -29,6 +29,7 @@ class RulesEmbed(commands.Cog):
                 inline = False
             )
 
+            await ctx.channel.purge(limit = 1)
             await ctx.send(embed = emb)
 
         except Exception as e:
