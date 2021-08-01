@@ -29,6 +29,8 @@ class RulesEmbed(commands.Cog):
                 value = 'Також, хто новий заходить на сервер змінюйте нік на ім\'я, щоб можна було легче звертатися, або ваш нік а в душках ім\'я'
             )
 
+            await ctx.send(embed = emb)
+
         except Exception as e:
             logging.exception(e)
 
