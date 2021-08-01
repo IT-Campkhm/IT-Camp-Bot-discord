@@ -16,6 +16,7 @@ bot.load_extension('cogs.commands.send_role_embed')
 bot.load_extension('cogs.event.add_role')
 bot.load_extension('cogs.event.remove_role')
 bot.load_extension('cogs.channel.create_channel')
+bot.load_extension('cogs.commands.rules_embed')
 
 
 token = os.environ.get('TOKEN')
