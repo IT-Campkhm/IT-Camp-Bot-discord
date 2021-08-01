@@ -11,6 +11,7 @@ class RulesEmbed(commands.Cog):
         self.bot = bot
 
     @commands.command(name = 'rules_embed')
+    @commands.has_permissions(administrator = True)
     async def _rules(self, ctx: Context):
         try:
             emb = (discord.Embed(

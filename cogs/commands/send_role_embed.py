@@ -12,6 +12,7 @@ class RemoveRole(commands.Cog):
         self.bot = bot
 
     @commands.command(name = 'send_role_embed')
+    @commands.has_permissions(administrator = True)
     async def _send_role_embed(self, ctx: Context):
         emb = (discord.Embed(
             title = 'Виберіть роль',
