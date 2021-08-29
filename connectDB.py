@@ -4,17 +4,17 @@ import config
 
 class ConnectDataBase():
     def __init__(self) -> None:
-        self.user = config.USER
+        self.username = config.USER
         self.host = config.HOST
         self.database = config.DATABASE
         self.password = config.PASSWORD
-        self.port = config.PORT
+        self.port = 5432
 
     def cursor(self):
         try:
             
             conn = psycopg2.connect(
-                user = self.user,
+                user = self.username,
                 host = self.host,
                 database = self.database,
                 password = self.password,

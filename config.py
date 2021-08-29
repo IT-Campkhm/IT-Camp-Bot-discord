@@ -1,10 +1,9 @@
 import os
 
-USER = os.environ.get('HOST')
-HOST = os.environ.get('HOST')
-DATABASE = os.environ.get('DATABASE')
-PASSWORD = os.environ.get('PASSWORD')
-PORT = 5432
+USER = str(os.environ.get('HOST'))
+HOST = str(os.environ.get('HOST'))
+DATABASE = str(os.environ.get('DATABASE'))
+PASSWORD = str(os.environ.get('PASSWORD'))
 
 ROLES_ADD = {
     '<a:python:866776924147286027>': 865971770422460417 ,# python
