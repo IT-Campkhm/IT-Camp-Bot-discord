@@ -9,6 +9,7 @@ class Clear(commands.Cog):
         self.bot = bot
 
     @commands.command(name = 'clear')
+    @commands.has_permissions(manage_guild = True)
     async def clear_message(self, ctx: Context, quantity: int = None):
         try:
             if quantity is not None:
