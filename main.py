@@ -9,7 +9,7 @@ logging.basicConfig(format = u'%(filename)s [LINE:%(lineno)d] #%(levelname)-8s [
 
 intents = discord.Intents.all()
 
-bot = Bot(command_prefix = '_', help_command = None, intents = intents)
+bot = Bot(command_prefix = '_', intents = intents)
 
 
 bot.load_extension('cogs.commands.send_role_embed')
