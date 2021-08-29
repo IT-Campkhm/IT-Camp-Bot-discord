@@ -1,8 +1,11 @@
+import logging
+
 import discord
+import psycopg2
+from connectDB import ConnectDataBase
 from discord.ext import commands
 from discord.ext.commands.context import Context
-import logging
-from connectDB import ConnectDataBase
+
 
 class TestOwner(commands.Cog):
     def __init__(self, bot: commands.Bot):
@@ -14,7 +17,21 @@ class TestOwner(commands.Cog):
     @commands.is_owner()
     async def _test_owner(self, ctx: Context):
         try:
-            await ctx.send(f'{ConnectDataBase().select()}')
+            conn = psycopg2.connect(
+                user = self.username,
+                host = self.host,
+                database = self.database,
+                password = self.password,
+                port = self.port
+            )
+
+            cursor = conn.cursor()
+            
+            cursor.execute("SELECT message_id FROM public.general WHERE channel_id = 1")
+            data = cursor.fetchone()
+            conn.commit()
+
+            await ctx.send(f'{data}')
         except Exception as e:
             logging.exception(e)
 
