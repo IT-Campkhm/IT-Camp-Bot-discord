@@ -10,7 +10,7 @@ class GiveRole(commands.Cog):
     def __init__(self, bot: commands.Bot) -> None:
         super().__init__()
         self.bot = bot
-        self.cursor = ConnectDataBase.cursor()
+        self.cursor = ConnectDataBase.cursor(self)
 
     @commands.Cog.listener()
     async def on_raw_reaction_add(self, payload: discord.RawReactionActionEvent):
