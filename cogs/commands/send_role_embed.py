@@ -37,23 +37,23 @@ class RemoveRole(commands.Cog):
                     '<:gamedev:866780079370665994> - Ігродел\n'\
                     '🌳 - 3Д модельер\n'\
                     '🛠️ - Soft Develompent\n'\
-                    '🤖 - Arduino\n',
+                    '🤖 - Arduino',
                     colour = discord.Color.green()
             ))
 
             emb_2 = (discord.Embed(
-                title = 'Виберіть роль',
+                title = '\u200b',
                 description = '<a:cpp:866776827762442240> - C++\n'\
                     '<a:csharp:866777010294226964> - C#\n'\
                     '<a:python:866776924147286027> - Python\n'\
                     '<a:javascript:866777189889343540> - JavaScript\n'\
                     '<:java:866781829495652403> - Java\n'\
-                    '<a:sql:866777146273038387> - SQL\n',
+                    '<a:sql:866777146273038387> - SQL',
                     colour = discord.Color.green()
             ))
 
             emb_3 = (discord.Embed(
-                title = 'Виберіть роль',
+                title = '\u200b',
                 description = '<a:blender:866784801838989392> - Blender\n'\
                     '🎨 - 3Dmax\n'\
                     '🎛️ - Unity\n'\
@@ -69,14 +69,23 @@ class RemoveRole(commands.Cog):
             message_2: discord.Message = await ctx.send(embed = emb_2)
             message_3: discord.Message = await ctx.send(embed = emb_3)
             
+            print(message_1.id)
+            print(message_2.id)
+            print(message_3.id)
 
             cursor = self.conn.cursor()
             cursor.execute(f'INSERT INTO public.general(channel_id, message_id) VALUES ({ctx.channel.id}, array[{message_1.id}, {message_2.id}, {message_3.id}]);')
             self.conn.commit()
 
-            for one_emb, two_emb, three_emb in range(0, 5, 1), range(6, 11, 1), range(7, 13, 1):
+            for one_emb in range(0, 5, 1):
                 await message_1.add_reaction(config.r[one_emb])
+                await asyncio.sleep(2)
+            
+            for two_emb in range(6, 11, 1):
                 await message_2.add_reaction(config.r[two_emb])
+                await asyncio.sleep(2)
+            
+            for three_emb in range(7, 13, 1):
                 await message_3.add_reaction(config.r[three_emb])
                 await asyncio.sleep(2)
 
