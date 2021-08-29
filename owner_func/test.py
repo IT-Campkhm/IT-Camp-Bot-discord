@@ -3,7 +3,6 @@ import logging
 import config
 import discord
 import psycopg2
-from connectDB import ConnectDataBase
 from discord.ext import commands
 from discord.ext.commands.context import Context
 
@@ -18,7 +17,6 @@ class TestOwner(commands.Cog):
     def __init__(self, bot: commands.Bot):
         super().__init__()
         self.bot = bot
-        #self.bd = ConnectDataBase()
 
     @commands.command(name = 'test')
     @commands.is_owner()

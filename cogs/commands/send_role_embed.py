@@ -1,3 +1,4 @@
+import asyncio
 import logging
 import discord
 from discord.ext import commands
@@ -7,9 +8,22 @@ import psycopg2
 
 
 class RemoveRole(commands.Cog):
+    username = config.USER
+    host = config.HOST
+    database = config.DATABASE
+    password = config.PASSWORD
+    port = 5432
+
     def __init__(self, bot: commands.Bot) -> None:
         super().__init__()
         self.bot = bot
+        self.conn = psycopg2.connect(
+            user = self.username,
+            host = self.host,
+            database = self.database,
+            password = self.password,
+            port = self.port
+        )
 
     @commands.command(name = 'send_role_embed')
     @commands.has_permissions(administrator = True)
@@ -51,13 +65,21 @@ class RemoveRole(commands.Cog):
             ))
 
             await ctx.channel.purge(limit = 1)
-            message_1 = await ctx.send(embed = emb_1)
-            message_2 = await ctx.send(embed = emb_2)
-            message_2 = await ctx.send(embed = emb_3)
+            message_1: discord.Message = await ctx.send(embed = emb_1)
+            message_2: discord.Message = await ctx.send(embed = emb_2)
+            message_3: discord.Message = await ctx.send(embed = emb_3)
             
-            for i in range(0, ):
-                await message_1.add_reaction(config.r[i])
-        
+
+            cursor = self.conn.cursor()
+            cursor.execute(f'INSERT INTO public.general(channel_id, message_id) VALUES ({ctx.channel.id}, array[{message_1.id}, {message_2.id}, {message_3.id}]);')
+            self.conn.commit()
+
+            for one_emb, two_emb, three_emb in range(0, 5, 1), range(6, 11, 1), range(7, 13, 1):
+                await message_1.add_reaction(config.r[one_emb])
+                await message_2.add_reaction(config.r[two_emb])
+                await message_3.add_reaction(config.r[three_emb])
+                await asyncio.sleep(2)
+
         except Exception as e:
             logging.info(e)
 
