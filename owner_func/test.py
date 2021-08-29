@@ -5,9 +5,15 @@ import psycopg2
 from connectDB import ConnectDataBase
 from discord.ext import commands
 from discord.ext.commands.context import Context
-
+import config
 
 class TestOwner(commands.Cog):
+    username = config.USER
+    host = config.HOST
+    database = config.DATABASE
+    password = config.PASSWORD
+    port = 5432
+
     def __init__(self, bot: commands.Bot):
         super().__init__()
         self.bot = bot
