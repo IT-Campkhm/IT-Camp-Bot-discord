@@ -12,6 +12,7 @@ class ConnectDataBase():
 
     def cursor(self):
         try:
+            
             conn = psycopg2.connect(
                 user = self.user,
                 host = self.host,
@@ -27,6 +28,9 @@ class ConnectDataBase():
 
     def select(self):
         try:
+            self.cursor().execute('select message_id from general where channel_id = 1')
+            print(self.cursor().fetchall())
+            
             return self.cursor().execute('select message_id from general where channel_id = 1')
         except Exception as e:
             logging.exception(e)
