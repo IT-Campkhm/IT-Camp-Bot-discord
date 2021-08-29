@@ -15,7 +15,7 @@ class TestOwner(commands.Cog):
     @commands.is_owner()
     async def _test_owner(self, ctx: Context):
         try:
-            await ctx.send(f'{ConnectDataBase.select()}')
+            await ctx.send(f'{ConnectDataBase.select}')
         except Exception as e:
             logging.exception(e)
 
