@@ -28,8 +28,15 @@ class RemoveRole(commands.Cog):
     @commands.Cog.listener()
     async def on_raw_reaction_remove(self, payload: discord.RawReactionActionEvent):
         
-        channel: discord.TextChannel = self.bot.get_channel(int(config.channel))
-        message = await channel.fetch_message(int(config.message))
+        cursor = self.conn.cursor()
+
+        cursor.execute(f'SELECT message_id FROM public."general" WHERE channel_id = {payload.channel_id};')
+        channel_id = cursor.fetchone()
+        self.conn.commit()
+        logging.info(channel_id)
+
+        channel: discord.TextChannel = self.bot.get_channel(payload.channel_id)
+        message = await channel.fetch_message(channel_id[0][0])
         member: discord.Member = utils.get(message.guild.members, id = payload.user_id)
 
         try:
