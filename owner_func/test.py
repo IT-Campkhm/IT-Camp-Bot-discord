@@ -4,8 +4,6 @@ from discord.ext.commands.context import Context
 import logging
 from connectDB import ConnectDataBase
 
-
-
 class TestOwner(commands.Cog):
     def __init__(self, bot: commands.Bot):
         super().__init__()

@@ -27,9 +27,9 @@ class ConnectDataBase():
 
     def select(self):
         try:
-            self.cursor().execute('select message_id from general where channel_id = 1')
+            self.cursor().execute('SELECT message_id FROM public.general WHERE channel_id = 1;')
             print(self.cursor().fetchall())
             
-            return self.cursor().execute('select message_id from general where channel_id = 1')
+            return self.cursor().execute('SELECT message_id FROM public.general WHERE channel_id = 1;')
         except Exception as e:
             logging.exception(e)
