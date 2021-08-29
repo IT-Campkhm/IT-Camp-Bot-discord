@@ -13,7 +13,7 @@ class GiveRole(commands.Cog):
     @commands.Cog.listener()
     async def on_raw_reaction_add(self, payload: discord.RawReactionActionEvent):
 
-        if payload.member.is_bot:
+        if not payload.member.bot:
             channel: discord.TextChannel = self.bot.get_channel(int(config.channel))
             message = await channel.fetch_message(int(config.message))
             member: discord.Member = utils.get(message.guild.members, id = payload.user_id)
