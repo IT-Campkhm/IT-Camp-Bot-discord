@@ -1,11 +1,12 @@
 import logging
 
+import config
 import discord
 import psycopg2
 from connectDB import ConnectDataBase
 from discord.ext import commands
 from discord.ext.commands.context import Context
-import config
+
 
 class TestOwner(commands.Cog):
     username = config.USER
@@ -37,7 +38,7 @@ class TestOwner(commands.Cog):
             data = cursor.fetchone()
             conn.commit()
 
-            await ctx.send(f'{data}')
+            await ctx.send(f'{data[0][0]}\n{data[0][1]}')
         except Exception as e:
             logging.exception(e)
 
