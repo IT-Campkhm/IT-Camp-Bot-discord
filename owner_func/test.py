@@ -12,7 +12,7 @@ class TestOwner(commands.Cog):
     @commands.command(name = 'test')
     async def _test_owner(self, ctx: Context):
         try:
-            await ctx.send(ConnectDataBase.select())
+            await ctx.send(ConnectDataBase.select(self))
         except Exception as e:
             logging.exception(e)
 
