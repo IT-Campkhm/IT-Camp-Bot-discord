@@ -42,7 +42,6 @@ class RemoveRole(commands.Cog):
             ))
 
             emb_2 = (discord.Embed(
-                title = '\u200b',
                 description = '<a:cpp:866776827762442240> - C++\n'\
                     '<a:csharp:866777010294226964> - C#\n'\
                     '<a:python:866776924147286027> - Python\n'\
@@ -53,7 +52,6 @@ class RemoveRole(commands.Cog):
             ))
 
             emb_3 = (discord.Embed(
-                title = '\u200b',
                 description = '<a:blender:866784801838989392> - Blender\n'\
                     '🎨 - 3Dmax\n'\
                     '🎛️ - Unity\n'\
@@ -77,18 +75,18 @@ class RemoveRole(commands.Cog):
             cursor.execute(f'INSERT INTO public.general(channel_id, message_id) VALUES ({ctx.channel.id}, array[{message_1.id}, {message_2.id}, {message_3.id}]);')
             self.conn.commit()
 
-            for one_emb in range(0, 5, 1):
+            for one_emb in range(0, 6):
                 await message_1.add_reaction(config.r[one_emb])
-                await asyncio.sleep(2)
-            
-            for two_emb in range(6, 11, 1):
+                await asyncio.sleep(1)
+            '''
+            for two_emb in range(7, 12):
                 await message_2.add_reaction(config.r[two_emb])
-                await asyncio.sleep(2)
+                await asyncio.sleep(1)
             
-            for three_emb in range(7, 13, 1):
+            for three_emb in range(8, 15):
                 await message_3.add_reaction(config.r[three_emb])
-                await asyncio.sleep(2)
-
+                await asyncio.sleep(1)
+            '''
         except Exception as e:
             logging.info(e)
 
