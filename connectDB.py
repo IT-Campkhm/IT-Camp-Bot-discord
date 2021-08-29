@@ -3,12 +3,11 @@ import logging
 import config
 
 class ConnectDataBase():
-    def __init__(self) -> None:
-        self.username = config.USER
-        self.host = config.HOST
-        self.database = config.DATABASE
-        self.password = config.PASSWORD
-        self.port = 5432
+    username = config.USER
+    host = config.HOST
+    database = config.DATABASE
+    password = config.PASSWORD
+    port = 5432
 
     def cursor(self):
         try:
