@@ -83,7 +83,7 @@ class RemoveRole(commands.Cog):
                 await message_2.add_reaction(config.r[two_emb])
                 await asyncio.sleep(1)
             
-            for three_emb in range(12, 18):
+            for three_emb in range(12, 19):
                 await message_3.add_reaction(config.r[three_emb])
                 await asyncio.sleep(1)
             
