@@ -3,17 +3,30 @@ import discord
 from discord import utils
 from discord.ext import commands
 from discord.ext.commands.context import Context
+import psycopg2
 import config
 
 
 class RemoveRole(commands.Cog):
+    username = config.USER
+    host = config.HOST
+    database = config.DATABASE
+    password = config.PASSWORD
+    port = 5432
+
     def __init__(self, bot: commands.Bot) -> None:
         super().__init__()
         self.bot = bot
+        self.conn = psycopg2.connect(
+            user = self.username,
+            host = self.host,
+            database = self.database,
+            password = self.password,
+            port = self.port
+        )
 
     @commands.Cog.listener()
     async def on_raw_reaction_remove(self, payload: discord.RawReactionActionEvent):
-        
         
         channel: discord.TextChannel = self.bot.get_channel(int(config.channel))
         message = await channel.fetch_message(int(config.message))

@@ -36,8 +36,8 @@ class GiveRole(commands.Cog):
             self.conn.commit()
             logging.info(channel_id)
 
-            channel: discord.TextChannel = self.bot.get_channel(int(config.channel))
-            message = await channel.fetch_message(int(config.message))
+            channel: discord.TextChannel = self.bot.get_channel(payload.channel_id)
+            message = await channel.fetch_message(channel_id[0][0])
             member: discord.Member = utils.get(message.guild.members, id = payload.user_id)
 
             try:
