@@ -10,12 +10,13 @@ class TestOwner(commands.Cog):
     def __init__(self, bot: commands.Bot):
         super().__init__()
         self.bot = bot
+        #self.bd = ConnectDataBase()
 
     @commands.command(name = 'test')
     @commands.is_owner()
     async def _test_owner(self, ctx: Context):
         try:
-            await ctx.send(f'{ConnectDataBase.select}')
+            await ctx.send(f'{ConnectDataBase().select()}')
         except Exception as e:
             logging.exception(e)
 
