@@ -1,5 +1,11 @@
 import os
 
+USER = os.environ.get('HOST')
+HOST = os.environ.get('HOST')
+DATABASE = os.environ.get('DATABASE')
+PASSWORD = os.environ.get('PASSWORD')
+PORT = 5432
+
 ROLES_ADD = {
     '<a:python:866776924147286027>': 865971770422460417 ,# python
     '<:gamedev:866780079370665994>': 865972670780801084, #gamedev

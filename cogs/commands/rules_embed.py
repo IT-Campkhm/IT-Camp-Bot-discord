@@ -1,5 +1,4 @@
 import discord
-from discord import colour
 from discord.ext import commands
 from discord.ext.commands.context import Context
 import logging
