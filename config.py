@@ -1,6 +1,6 @@
 import os
 
-USER = str(os.environ.get('HOST'))
+USER = str(os.environ.get('USER'))
 HOST = str(os.environ.get('HOST'))
 DATABASE = str(os.environ.get('DATABASE'))
 PASSWORD = str(os.environ.get('PASSWORD'))
