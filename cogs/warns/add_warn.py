@@ -40,15 +40,22 @@ class AddWarn(commands.Cog):
                 self.cursor.execute(f'SELECT quantati FROM public.user_warns WHERE user_id = {member.id};')
                 quantati = self.cursor.fetchone()
 
-                logging.info(quantati)
-                
-                self.cursor.execute(
-                    'UPDATE public.user_warns SET user_id=?, quantati=?, where_add=?, who_add_warn=? WHERE <condition>;'
-                )
+                self.cursor.execute(f'SELECT who_add_warn FROM public.user_warns WHERE user_id = {member.id};')
+                who_add_warn = self.cursor.fetchone()
 
+                self.cursor.execute(f'SELECT where_add FROM public.user_warns WHERE user_id = {member.id}')
+                where_add = self.cursor.fetchone()
 
                 self.conn.commit()
 
+                logging.info(quantati)
+                logging.info(who_add_warn)
+                logging.info(where_add)
+                '''
+                self.cursor.execute(
+                    'UPDATE public.user_warns SET quantati=?, where_add=?, who_add_warn=? WHERE <condition>;'
+                )
+                '''
 
         except Exception as e:
             logging.exception(e)
