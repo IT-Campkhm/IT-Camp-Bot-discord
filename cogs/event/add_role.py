@@ -49,6 +49,9 @@ class GiveRole(commands.Cog):
                 logging.exception(repr(e))
             finally:
                 logging.info(f'{member}' + ' add role ' + f'{role_add.name}')
+                if self.conn:
+                    self.cursor.close()
+                    self.conn.close()
     
     @commands.Cog.listener()
     async def on_raw_reaction_add(self, payload: discord.RawReactionActionEvent): # Друге повідомлення з вибором ролі
@@ -75,6 +78,9 @@ class GiveRole(commands.Cog):
                 logging.exception(repr(e))
             finally:
                 logging.info(f'{member}' + ' add role ' + f'{role_add.name}')
+                if self.conn:
+                    self.cursor.close()
+                    self.conn.close()
     
     @commands.Cog.listener()
     async def on_raw_reaction_add(self, payload: discord.RawReactionActionEvent): # Третє повідомлення з вибором ролі
@@ -101,6 +107,9 @@ class GiveRole(commands.Cog):
                 logging.exception(repr(e))
             finally:
                 logging.info(f'{member}' + ' add role ' + f'{role_add.name}')
+                if self.conn:
+                    self.cursor.close()
+                    self.conn.close()
 
 def setup(bot: commands.Bot):
     bot.add_cog(GiveRole(bot))

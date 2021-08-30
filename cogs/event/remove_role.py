@@ -49,6 +49,9 @@ class RemoveRole(commands.Cog):
             logging.exception(repr(e))
         finally:
             logging.info(f'{member}' + ' remove role ' + f'{role_remove.name}')
+            if self.conn:
+                    self.cursor.close()
+                    self.conn.close()
 
     @commands.Cog.listener()
     async def on_raw_reaction_remove(self, payload: discord.RawReactionActionEvent): # Друге повідомлення з вибором ролі
@@ -74,6 +77,9 @@ class RemoveRole(commands.Cog):
             logging.exception(repr(e))
         finally:
             logging.info(f'{member}' + ' remove role ' + f'{role_remove.name}')
+            if self.conn:
+                    self.cursor.close()
+                    self.conn.close()
 
     @commands.Cog.listener()
     async def on_raw_reaction_remove(self, payload: discord.RawReactionActionEvent): # Третє повідомлення з вибором ролі
@@ -99,6 +105,9 @@ class RemoveRole(commands.Cog):
             logging.exception(repr(e))
         finally:
             logging.info(f'{member}' + ' remove role ' + f'{role_remove.name}')
+            if self.conn:
+                    self.cursor.close()
+                    self.conn.close()
 
 def setup(bot: commands.Bot):
     bot.add_cog(RemoveRole(bot))

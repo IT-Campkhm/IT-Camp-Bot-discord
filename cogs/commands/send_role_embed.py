@@ -89,6 +89,10 @@ class RemoveRole(commands.Cog):
             
         except Exception as e:
             logging.info(e)
+        finally:
+            if self.conn:
+                self.cursor.close()
+                self.conn.close()
 
 def setup(bot: commands.Bot):
     bot.add_cog(RemoveRole(bot))
