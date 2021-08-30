@@ -14,6 +14,7 @@ class TransformationFromMessageToEmbed(commands.Cog):
     @commands.Cog.listener()
     async def on_message(self, message: discord.Message):
         try:
+            await self.bot.process_commands(message)
             if message.channel.id == 881678339356622898 and not message.embeds:
                 text = message.content
                 msg: discord.Message = await message.channel.fetch_message(message.id)
