@@ -18,6 +18,8 @@ bot.load_extension('cogs.channel.create_channel')
 bot.load_extension('cogs.commands.rules_embed')
 bot.load_extension('owner_func.test')
 bot.load_extension('cogs.commands.clear')
+bot.load_extension('cogs.commands.send_embed')
+bot.load_extension('cogs.commands.send')
 
 
 token = os.environ.get('TOKEN')
