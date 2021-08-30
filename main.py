@@ -20,6 +20,7 @@ bot.load_extension('owner_func.test')
 bot.load_extension('cogs.commands.clear')
 bot.load_extension('cogs.commands.send_embed')
 bot.load_extension('cogs.commands.send')
+bot.load_extension('cogs.warns.add_warn')
 
 
 token = os.environ.get('TOKEN')
