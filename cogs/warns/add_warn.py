@@ -64,7 +64,7 @@ class AddWarn(commands.Cog):
             else:
 
                 self.cursor.execute(
-                    f'INSERT INTO public.user_warns(user_id, quantati, where_add, who_add_warn) VALUES ({member.id}, {1}, \{\'{datetime.date.today()}\'\}, array[{ctx.author.id}]);'
+                    'INSERT INTO public.user_warns(user_id, quantati, where_add, who_add_warn) VALUES ({}, {}, {}, array[{}]);'.format(member.id, 1, '{ {} }'.fromat(datetime.date.today()), ctx.author.id)
                 )
 
         except Exception as e:
