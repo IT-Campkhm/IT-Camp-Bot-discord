@@ -63,7 +63,7 @@ class AddWarn(commands.Cog):
             
             else:
 
-                self.cursor.execute(
+                cursor.execute(
                     'INSERT INTO public.user_warns(user_id, quantati, where_add, who_add_warn) VALUES ({}, {}, {}, array[{}]);'.format(member.id, 1, '{ {} }'.fromat(datetime.date.today()), ctx.author.id)
                 )
 
@@ -72,7 +72,7 @@ class AddWarn(commands.Cog):
         
         finally:
             if self.conn:
-                self.cursor.close()
+                cursor.close()
                 self.conn.close()
 
 def setup(bot: commands.Bot):
