@@ -24,7 +24,8 @@ class TransformationFromMessageToEmbed(commands.Cog):
                     color = discord.Color.from_rgb(255, 255, 255)
                 ))
 
-                await msg.delete()
+                if not msg.embeds:
+                    await msg.delete()
                 await message.channel.send(embed = emb)
 
         except Exception as e:
