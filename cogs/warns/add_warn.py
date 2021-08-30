@@ -36,7 +36,7 @@ class AddWarn(commands.Cog):
 
             logging.info(user)
 
-            if user is not None:
+            if user is None:
                 self.cursor.execute(f'SELECT quantati FROM public.user_warns WHERE user_id = {member.id};')
                 quantati = self.cursor.fetchone()
 
