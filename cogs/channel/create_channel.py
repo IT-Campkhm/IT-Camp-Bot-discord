@@ -16,14 +16,9 @@ class PrivateChannel(commands.Cog):
     @commands.Cog.listener()
     async def on_voice_state_update(self, member: discord.Member, before: discord.VoiceState, after: discord.VoiceState):
         
-        print(f'Before: {before}\n')
-        print(f'After: {after}\n')
-
-        
         category = int(config.category_id)
 
         if after.channel is not None and member.voice.channel.id == int(config.voice_id) and member.voice.channel is not None:
-            logging.info('Member connect in channel {0}'.format(after.channel.name))
             
             try:
                 category_main: discord.CategoryChannel = get(member.guild.categories, id = category)
@@ -34,16 +29,16 @@ class PrivateChannel(commands.Cog):
 
                 self.all_channel.append(channel.id)
 
-                logging.info(self.all_channel)
-
             except Exception as e:
                 logging.exception(e)
         
         elif after.channel is None and before.channel.id in self.all_channel and len(before.channel.members) == 0:
 
             try:
+                
                 del_channel: discord.VoiceChannel = get(member.guild.voice_channels, id = before.channel.id)
                 await del_channel.delete()
+            
             except Exception as e:
                 logging.exception(e)
             
