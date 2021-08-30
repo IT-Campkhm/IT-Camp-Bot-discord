@@ -37,7 +37,18 @@ class AddWarn(commands.Cog):
             logging.info(user)
 
             if user is not None:
-                self.cursor.execute('')
+                self.cursor.execute(f'SELECT quantati FROM public.user_warns WHERE user_id = {member.id};')
+                quantati = self.cursor.fetchone()
+
+                logging.info(quantati)
+                
+                self.cursor.execute(
+                    'UPDATE public.user_warns SET user_id=?, quantati=?, where_add=?, who_add_warn=? WHERE <condition>;'
+                )
+
+
+                self.conn.commit()
+
 
         except Exception as e:
             logging.exception(e)
