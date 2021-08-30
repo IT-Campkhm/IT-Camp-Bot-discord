@@ -14,7 +14,8 @@ class SendEmbedBot(commands.Cog):
         try:
             emb = (discord.Embed(
                 description = f'{text}',
-                timestamp = ctx.message.created_at
+                timestamp = ctx.message.created_at,
+                color = discord.Color.green()
             )).set_footer(
                 text = ctx.author,
                 icon_url = ctx.author.avatar_url
