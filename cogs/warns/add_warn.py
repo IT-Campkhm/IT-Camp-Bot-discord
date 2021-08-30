@@ -30,7 +30,7 @@ class AddWarn(commands.Cog):
     async def _add_warn(self, ctx: Context, member: discord.Member, reason = None):
         try:
 
-            self.cursor.execute(f'SELECT * WHERE user_id = {member.id}')
+            self.cursor.execute(f'SELECT quantati, where_add, who_add_warn WHERE user_id = {member.id}')
             user = self.cursor.fetchone()
             self.conn.commit()
 
