@@ -59,10 +59,11 @@ class AddWarn(commands.Cog):
 
         except Exception as e:
             logging.exception(e)
+        '''
         finally:
             if self.conn:
                 self.cursor.close()
                 self.conn.close()
-
+        '''
 def setup(bot: commands.Bot):
     bot.add_cog(AddWarn(bot))
