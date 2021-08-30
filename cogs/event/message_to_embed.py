@@ -19,7 +19,7 @@ class TransformationFromMessageToEmbed(commands.Cog):
                 msg = await message.channel.fetch_message(message.id)
 
                 emb = (discord.Embed(
-                    descriptin = f'{text}',
+                    description = f'{text}',
                     timestamp = message.created_at,
                     color = discord.Color.from_rgb(255, 255, 255)
                 ))
