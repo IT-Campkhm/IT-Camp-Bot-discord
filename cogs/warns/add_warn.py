@@ -32,8 +32,12 @@ class AddWarn(commands.Cog):
 
             self.cursor.execute(f'SELECT * WHERE user_id = {member.id}')
             user = self.cursor.fetchone()
-
             self.conn.commit()
+
+            logging.info(user)
+
+            if user is not None:
+                self.cursor.execute('')
 
         except Exception as e:
             logging.exception(e)
