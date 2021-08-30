@@ -14,7 +14,7 @@ class TransformationFromMessageToEmbed(commands.Cog):
     @commands.Cog.listener()
     async def on_message(self, message: discord.Message):
         try:
-            if message.channel.id == 881678339356622898:
+            if message.channel.id == 881678339356622898 and not message.embeds:
                 text = message.content
                 msg: discord.Message = await message.channel.fetch_message(message.id)
                 print(msg.embeds)
@@ -23,9 +23,8 @@ class TransformationFromMessageToEmbed(commands.Cog):
                     timestamp = message.created_at,
                     color = discord.Color.from_rgb(255, 255, 255)
                 ))
-
-                if not msg.embeds:
-                    await msg.delete()
+                
+                await msg.delete()
                 await message.channel.send(embed = emb)
 
         except Exception as e:
