@@ -5,6 +5,7 @@ import discord
 import psycopg2
 from discord.ext import commands
 from discord.ext.commands.context import Context
+import datetime
 
 
 class AddWarn(commands.Cog):
@@ -23,29 +24,32 @@ class AddWarn(commands.Cog):
             password = self.password,
             port = self.port
         )
-        self.cursor = self.conn.cursor()
 
     @commands.command(name = 'warn')
     @commands.has_permissions(manage_guild = True)
     async def _add_warn(self, ctx: Context, member: discord.Member, reason = None):
         try:
 
-            self.cursor.execute(f'SELECT user_id, quantati, where_add, who_add_warn FROM public.user_warns WHERE user_id = {member.id};')
-            user = self.cursor.fetchone()
+            cursor = self.conn.cursor()
+
+            cursor.execute(f'SELECT user_id, quantati, where_add, who_add_warn FROM public.user_warns WHERE user_id = {member.id};')
+            user = cursor.fetchone()
             self.conn.commit()
 
             logging.info(user)
 
-            if user is None:
-                self.cursor.execute(f'SELECT quantati FROM public.user_warns WHERE user_id = {member.id};')
-                quantati = self.cursor.fetchone()
+            if user is not None:
+                
+                cursor.execute(f'SELECT quantati FROM public.user_warns WHERE user_id = {member.id};')
+                quantati = cursor.fetchone()
+                self.conn.commit()
 
-                self.cursor.execute(f'SELECT who_add_warn FROM public.user_warns WHERE user_id = {member.id};')
-                who_add_warn = self.cursor.fetchone()
+                cursor.execute(f'SELECT who_add_warn FROM public.user_warns WHERE user_id = {member.id};')
+                who_add_warn = cursor.fetchone()
+                self.conn.commit()
 
-                self.cursor.execute(f'SELECT where_add FROM public.user_warns WHERE user_id = {member.id}')
-                where_add = self.cursor.fetchone()
-
+                cursor.execute(f'SELECT where_add FROM public.user_warns WHERE user_id = {member.id}')
+                where_add = cursor.fetchone()
                 self.conn.commit()
 
                 logging.info(quantati)
@@ -56,14 +60,20 @@ class AddWarn(commands.Cog):
                     'UPDATE public.user_warns SET quantati=?, where_add=?, who_add_warn=? WHERE <condition>;'
                 )
                 '''
+            
+            else:
+
+                self.cursor.execute(
+                    f'INSERT INTO public.user_warns(user_id, quantati, where_add, who_add_warn) VALUES ({member.id}, {1}, \{\'{datetime.date.today()}\'\}, array[{ctx.author.id}]);'
+                )
 
         except Exception as e:
             logging.exception(e)
-        '''
+        
         finally:
             if self.conn:
                 self.cursor.close()
                 self.conn.close()
-        '''
+
 def setup(bot: commands.Bot):
     bot.add_cog(AddWarn(bot))
