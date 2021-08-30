@@ -13,9 +13,13 @@ class SendEmbedBot(commands.Cog):
         try:
             emb = (discord.Embed(
                 description = f'{text}',
-                timestamp = ctx.message.create_at
-            ))
+                timestamp = ctx.create_at
+            )).set_footer(
+                text = ctx.author,
+                icon_url = ctx.author.avatar_url
+            )
 
+            await ctx.message.purge(limit = 1)
             await ctx.send(embed = emb)
         except Exception as e:
             logging.exception(e)

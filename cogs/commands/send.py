@@ -12,6 +12,7 @@ class SendBot(commands.Cog):
     @commands.has_permissions(manage_guild = True)
     async def _send_message_use_bot(self, ctx: Context, *, text):
         try:
+            await ctx.message.purge(limit = 1)
             await ctx.send(f'{text}')
         except Exception as e:
             logging
