@@ -39,6 +39,8 @@ class AddWarn(commands.Cog):
             if user is not None:
                 self.cursor.execute('')
 
+
+
         except Exception as e:
             logging.exception(e)
         finally:
