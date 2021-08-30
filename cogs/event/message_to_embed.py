@@ -16,8 +16,8 @@ class TransformationFromMessageToEmbed(commands.Cog):
         try:
             if message.channel.id == 881678339356622898:
                 text = message.content
-                msg = await message.channel.fetch_message(message.id)
-
+                msg: discord.Message = await message.channel.fetch_message(message.id)
+                print(msg.embeds)
                 emb = (discord.Embed(
                     description = f'{text}',
                     timestamp = message.created_at,
