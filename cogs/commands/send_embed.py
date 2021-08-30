@@ -20,7 +20,7 @@ class SendEmbedBot(commands.Cog):
                 icon_url = ctx.author.avatar_url
             )
 
-            await ctx.message.purge(limit = 1)
+            await ctx.channel.purge(limit = 1)
             await ctx.send(embed = emb)
         except Exception as e:
             logging.exception(e)
