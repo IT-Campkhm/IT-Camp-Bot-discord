@@ -16,7 +16,7 @@ class TransformationFromMessageToEmbed(commands.Cog):
         try:
             await self.bot.process_commands(message)
             
-            if message.channel.id == 881678339356622898 and not message.embeds:
+            if message.channel.id == 881678339356622898 and not message.embeds and message.author.id not in config.MODERS:
                 
                 text = message.content
                 msg: discord.Message = await message.channel.fetch_message(message.id)
@@ -25,10 +25,15 @@ class TransformationFromMessageToEmbed(commands.Cog):
                     description = f'{text}',
                     timestamp = message.created_at,
                     color = discord.Color.from_rgb(255, 255, 255)
-                ))
+                )).set_footer(
+                    text = message.author,
+                    icon_url = message.author.avatar_url
+                )
                 
                 await msg.delete()
-                await message.channel.send(embed = emb)
+                m = await message.channel.send(embed = emb)
+                m.add_reaction('👍')
+                m.add_reaction('👎')
 
         except Exception as e:
             logging.exception(e)
