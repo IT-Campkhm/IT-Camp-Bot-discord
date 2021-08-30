@@ -9,11 +9,12 @@ class SendEmbedBot(commands.Cog):
         self.bot = bot
 
     @commands.command(name = 'send_embed')
+    @commands.has_permissions(manage_guild = True)
     async def _send_message_embed_use_bot(self, ctx: Context, *, text):
         try:
             emb = (discord.Embed(
                 description = f'{text}',
-                timestamp = ctx.create_at
+                timestamp = ctx.message.created_at
             )).set_footer(
                 text = ctx.author,
                 icon_url = ctx.author.avatar_url
