@@ -32,8 +32,8 @@ class TransformationFromMessageToEmbed(commands.Cog):
                 
                 await msg.delete()
                 m = await message.channel.send(embed = emb)
-                m.add_reaction('👍')
-                m.add_reaction('👎')
+                await m.add_reaction('👍')
+                await m.add_reaction('👎')
 
 
         except Exception as e:
