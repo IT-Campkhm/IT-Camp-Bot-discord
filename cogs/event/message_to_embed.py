@@ -35,6 +35,7 @@ class TransformationFromMessageToEmbed(commands.Cog):
                 m.add_reaction('👍')
                 m.add_reaction('👎')
 
+
         except Exception as e:
             logging.exception(e)
 
