@@ -26,7 +26,7 @@ class TestOwner(commands.Cog):
                 timestamp = ctx.message.created_at
             ).set_footer(
                 text = f'{ctx.author.id} | Приємно провести час на нашому проекті',
-                icon_url = ctx.author.icon_url
+                icon_url = ctx.author.avatar_url
             ))
             await channel_greeting.send(f'{ctx.author.mention}', embed = emb)
         except Exception as e:
