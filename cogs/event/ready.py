@@ -22,4 +22,4 @@ class BotOnReady(commands.Cog):
             logging.exception(e)
 
 def setup(bot: commands.Bot):
-    bot.add_cog(BotOnReady)
+    bot.add_cog(BotOnReady(bot))
