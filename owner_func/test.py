@@ -7,7 +7,6 @@ from config import CHANNEL_RULES, CHANNEL_GREETING, CNANNEL_ROLES
 
 class TestOwner(commands.Cog):
     def __init__(self, bot: commands.Bot):
-        super().__init__()
         self.bot = bot
 
     @commands.command(name = 'test')

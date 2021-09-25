@@ -5,7 +5,6 @@ from config import CHANNEL_RULES, CHANNEL_GREETING, CNANNEL_ROLES
 
 class MemberJoinedGuild(commands.Cog):
     def __init__(self, bot: commands.Bot):
-        super(commands.Cog).__init__()
         self.bot = bot
 
     @commands.Cog.listener()
@@ -21,6 +20,7 @@ class MemberJoinedGuild(commands.Cog):
                 description = 'Головна мета IT-camp це зробити комфортне місце для вивчення різних напрямів ІТ-технологій в професійному середовищі з неймовірною атмосферою та крутою командою💥\n\n'\
                 f'Ознайометесь з правилами проекту в каналі {channel_rules.mention}.\n'
                 f'Також можете вибрати роль в каналі {cnannel_roles.mention}, яка найбільше підходить до вашого виду діяльності.',
+                colour = discord.Color.green(),
                 timestamp = member.joined_at
             ).set_footer(
                 text = f'{member.id} | Приємно провести час на нашому проекті',
