@@ -22,6 +22,7 @@ bot.load_extension('cogs.commands.send')
 bot.load_extension('cogs.warns.add_warn')
 bot.load_extension('cogs.event.message_to_embed')
 bot.load_extension('cogs.event.user_join_guild')
+bot.load_extension('cogs.event.ready')
 
 
 token = os.environ.get('TOKEN')

@@ -14,9 +14,9 @@ class TestOwner(commands.Cog):
     @commands.is_owner()
     async def _test_owner(self, ctx: Context):
         try:
-            channel_rules = self.bot.get_channel(CHANNEL_RULES)
-            channel_greeting = self.bot.get_channel(CHANNEL_GREETING)
-            cnannel_roles = self.bot.get_channel(CNANNEL_ROLES)
+            channel_rules: discord.TextChannel = self.bot.get_channel(CHANNEL_RULES)
+            channel_greeting: discord.TextChannel = self.bot.get_channel(CHANNEL_GREETING)
+            cnannel_roles: discord.TextChannel = self.bot.get_channel(CNANNEL_ROLES)
 
             emb = (discord.Embed(
                 title = f'Вітаємо вас на сервері проекту {ctx.guild.name}!',
