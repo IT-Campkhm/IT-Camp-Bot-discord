@@ -12,7 +12,7 @@ class MemberJoinedGuild(commands.Cog):
         try:
 
             channel_rules = self.bot.get_channel(CHANNEL_RULES)
-            channel_greeting = self.bot.get_channel(CHANNEL_GREETING)
+            channel_greeting = await member.create_dm()
             cnannel_roles = self.bot.get_channel(CNANNEL_ROLES)
 
             emb = (discord.Embed(
