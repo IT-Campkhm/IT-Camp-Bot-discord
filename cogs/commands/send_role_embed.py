@@ -31,7 +31,7 @@ class RemoveRole(commands.Cog):
         try:
             
             emb_1 = (discord.Embed(
-                title = 'Виберіть роль',
+                title = 'Обери напрям👇🏻',
                 description = '🖥️ - Верстальщик\n'\
                     '🕸️ - Бекенд\n'\
                     '<:gamedev:866780079370665994> - Ігродел\n'\
@@ -72,7 +72,8 @@ class RemoveRole(commands.Cog):
             print(message_3.id)
 
             cursor = self.conn.cursor()
-            cursor.execute(f'INSERT INTO public.general(channel_id, message_id) VALUES ({ctx.channel.id}, array[{message_1.id}, {message_2.id}, {message_3.id}]);')
+            cursor.execute(f'INSERT INTO public.general(channel_id, message_id) VALUES ({ctx.channel.id}, '
+                           f'array[{message_1.id}, {message_2.id}, {message_3.id}]);')
             self.conn.commit()
 
             for one_emb in range(0, 6):
